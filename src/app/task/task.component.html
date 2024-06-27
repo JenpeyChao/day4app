@@ -1,1 +1,30 @@
-<p>task works!</p>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div style="text-align: center;">
+    <h1>{{title}}</h1>
+</div>
+
+<div style="text-align: left;">
+    <!-- <li *ngFor="let book of books">
+        <div [ngSwitch]="book">
+            <div *ngSwitchCase="'a'">{{book}} for APPLE</div> 
+            <div *ngSwitchCase="'b'">{{book}} for BOY</div> 
+            <div *ngSwitchCase="'c'">{{book}} for COOKIES</div> 
+            <div *ngSwitchDefault>{{book}} has no specific case</div>
+        </div>
+    </li> -->
+    <li *ngFor = "let task of tasksArray">
+        <div>{{task.tasks}}</div>
+
+    </li>
+</div>
+
+<div style="text-align: right;">
+    <label>Task</label>
+    <input type="text" [(ngModel)]="task" id = "taskInput">
+    <button (click) = "addTask()">add</button>
+    
+</div> 
+
