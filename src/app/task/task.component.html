@@ -6,25 +6,28 @@
     <h1>{{title}}</h1>
 </div>
 
-<div style="text-align: left;">
-    <!-- <li *ngFor="let book of books">
-        <div [ngSwitch]="book">
-            <div *ngSwitchCase="'a'">{{book}} for APPLE</div> 
-            <div *ngSwitchCase="'b'">{{book}} for BOY</div> 
-            <div *ngSwitchCase="'c'">{{book}} for COOKIES</div> 
-            <div *ngSwitchDefault>{{book}} has no specific case</div>
-        </div>
-    </li> -->
-    <li *ngFor = "let task of tasksArray">
-        <div>{{task.tasks}}</div>
+<div style="display: flex; text-align: center;">
+    <div style="flex: 1; text-align: center;">
+        <ul *ngFor="let task of tasksArray; let i = index">
+            <div>{{ i + 1 }}) {{ task }}</div>
+            
+        </ul>
+    </div>
 
-    </li>
+    <div style="flex: 1; text-align: center;">
+        <input type="text" placeholder="Add a task" [(ngModel)]="task" id="taskInput" class="input"/>
+        <button (click)="addTask()" class="button" onmouseover="this.style.backgroundColor='#cccccc';" 
+        onmouseout="this.style.backgroundColor='#f3f6f4';">add</button>
+
+        <br>
+
+        <input type="text" placeholder="Delete a task" [(ngModel)]="taskId" id="taskDelete" class="input"/>
+        <button (click)="deleteTask()" class="button" onmouseover="this.style.backgroundColor='#cccccc';" 
+        onmouseout="this.style.backgroundColor='#f3f6f4';">delete</button>
+
+        <br>
+
+        <button (click)="deleteAllTask()" type="button" class="biggerButton" onmouseover="this.style.backgroundColor='#cccccc';" 
+        onmouseout="this.style.backgroundColor='#f3f6f4';">Clear all tasks</button>
+    </div>
 </div>
-
-<div style="text-align: right;">
-    <label>Task</label>
-    <input type="text" [(ngModel)]="task" id = "taskInput">
-    <button (click) = "addTask()">add</button>
-    
-</div> 
-

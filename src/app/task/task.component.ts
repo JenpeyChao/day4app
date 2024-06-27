@@ -9,35 +9,42 @@ import { stringify } from 'querystring';
 export class TaskComponent {
   title = 'Task Manager';
   task = '';
-  sessionId = 0;
+  tasklen:number = 0;
+  taskId = null;
   tasksArray: Array<any> = [];
   ngOnInit(){
-    const savedSessionId = localStorage.getItem('sessionId');
-    if(savedSessionId){
-      this.sessionId += Number(savedSessionId);
-    }
+
     let savedTasks = localStorage.getItem('sessionTask');
     if(savedTasks){
       this.tasksArray = JSON.parse(savedTasks);
     }
     console.log(this.tasksArray);
-    console.log(this.sessionId);
+    this.tasklen = this.tasksArray.length;
 
   }
   addTask(){
   
     console.log(this.tasksArray);
-    let data  = {id:this.sessionId,tasks:this.task}
+
     let tasks = localStorage.getItem('sessionTask')
     this.tasksArray = tasks ? JSON.parse(tasks) : [];
-    this.tasksArray.push(data)
+    this.tasksArray.push(this.task)
     localStorage.setItem('sessionTask',JSON.stringify(this.tasksArray))
-    this.sessionId+=1;
-    localStorage.setItem('sessionId',String(this.sessionId))
+
+    this.task = '';
     
 
   }
   deleteAllTask(){
+    console.log("cleared the array")
     localStorage.clear();
+    this.tasksArray = []
+  }
+  deleteTask(){
+    console.log("deleted " + this.taskId)
+    if(this.taskId != null)
+      this.tasksArray.splice(this.taskId-1,1)
+    localStorage.setItem("sessionTask", JSON.stringify(this.tasksArray))
+    this.taskId = null
   }
 }
